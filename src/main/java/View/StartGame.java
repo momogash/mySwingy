@@ -11,13 +11,13 @@ public class StartGame {
 	
 	HeroMaker heromaker = HeroMaker.getHero();
 	PcCoordinates pc = new PcCoordinates();
-	Map map = new Map();
+	//Map map = new Map();
 	
 	private int pcLevel;
 	private int mapSize;
 	private int cox = 0;
 	private int coy = 0;
-	private ArrayList<Coordinates> c;
+	
 	
 	
 	public StartGame() {
@@ -40,13 +40,14 @@ public class StartGame {
 		System.out.println("Player Y coordinate is:"+coy);
 		
 		while(true) {
-			//
+			
 			map.showBoard();
 			//place enemies
 			map.placeEnemies();
+			map.board[cox][coy] = " H ";
+			
 			map.showBoard();
 		
-			
 			System.exit(1);
 			
 			

@@ -11,7 +11,7 @@ public class Map {
 	public String [][] board;
 	ArrayList<Coordinates> enemyCoordinate;
 	
-	public Map() {}
+	//public Map() {}
 	
 	public Map(int level) {
 		this.board = createBoard(mapSize(level));
@@ -53,16 +53,22 @@ public class Map {
 		Random random = new Random();
 		boolean coordinateExist = false;
 		
+		
 		while(enemyCoordinate.size() != enemyCount) {
 			int x = random.nextInt(board.length);
 			int y = random.nextInt(board.length);
+//			System.out.println("here " + x+ " " + y);
 			
 			for(Coordinates c: enemyCoordinate) {
 				if (c.getX() == x || c.getY() == y)
 					coordinateExist = true;
 			}
-			if(!coordinateExist)
+			if(!coordinateExist) {
 				enemyCoordinate.add(new Coordinates(x,y));
+			} else
+				coordinateExist = false;
+				
+			
 		}
 		return enemyCoordinate;
 	}
@@ -74,7 +80,8 @@ public class Map {
 		for(Coordinates c: placements) {
 			board[c.x][c.y] = " E ";  
 		}
-		showBoard();
+		
+		//showBoard();
 		
 	}
 	
