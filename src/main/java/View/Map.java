@@ -1,15 +1,18 @@
 package View;
 
 import java.util.ArrayList;
+
 import java.util.Random;
 
 import Model.Coordinates;
+import Model.PcCoordinates;
 
 public class Map {
 
 	private int size;
 	public String [][] board;
 	ArrayList<Coordinates> enemyCoordinate;
+	PcCoordinates pc = new PcCoordinates();
 	
 	//public Map() {}
 	
@@ -17,15 +20,6 @@ public class Map {
 		this.board = createBoard(mapSize(level));
 		
 	}
-	
-//	public void setSize(int level) {
-//		this.size = (int) ((level -1) * 5 + 10 - (level*0.02));
-//		
-//	}
-	
-//	public int getSize() {
-//		return this.size;
-//	}
 	
 	public int mapSize(int level) {
 		int mapsize =  (level - 1) * 5 + 10 - (level % 2);
@@ -99,15 +93,18 @@ public class Map {
 	}
 	
 	//movement
-	public void move(int direction) {
+	public void move(int direction,int cox, int coy) {
 		// prompt comes before here
 		//1 North
 		//2 South
 		//3 East
 		//4 West
 		
-		int x = 4;
-		int y = 4; //should be received from hero class
+		
+		int x = cox;
+		System.out.println("pc's x is:" + x);
+		int y = coy; //should be received from hero class
+		System.out.println("pc's x is:" + y);
 		int mapsize = board.length;
 		boolean Win = false;
 		
@@ -121,6 +118,8 @@ public class Map {
 			fight((y-1),x);
 			
 			board[y-1][x] = " E ";
+			
+			//showBoard();
 			
 			
 		}

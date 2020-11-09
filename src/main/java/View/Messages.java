@@ -22,5 +22,13 @@ public class Messages {
 		System.out.println("creating a new player");
 	}
 	
+	public int movePlayer() {
+		System.out.println("Press 1 to move up | 2 to move down | 3 to move right | 4 to move left");
+		Scanner scan = new Scanner(System.in);
+		int input = Integer.parseInt(scan.next()); 
+		return input;
+		
+	}
+	
 
 }

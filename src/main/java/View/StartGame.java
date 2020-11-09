@@ -11,12 +11,13 @@ public class StartGame {
 	
 	HeroMaker heromaker = HeroMaker.getHero();
 	PcCoordinates pc = new PcCoordinates();
+	Messages input = new Messages();
 	//Map map = new Map();
 	
 	private int pcLevel;
 	private int mapSize;
-	private int cox = 0;
-	private int coy = 0;
+	public int cox = 0;
+	public int coy = 0;
 	
 	
 	
@@ -45,6 +46,9 @@ public class StartGame {
 			//place enemies
 			map.placeEnemies();
 			map.board[cox][coy] = " H ";
+			map.showBoard();
+			int option =  input.movePlayer();
+			map.move(option,cox,coy);
 			
 			map.showBoard();
 		
