@@ -29,6 +29,16 @@ public class Messages {
 		return input;
 		
 	}
+	public String encounter() {
+		
+		System.out.println("You looose!!");
+		System.out.println("You have encountered an enemy");
+		System.out.println("Press f to fight or r to run");
+		Scanner scan = new Scanner(System.in);
+		String input = scan.next(); 
+		return input;
+		
+	}
 	
 
 }

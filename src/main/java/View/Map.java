@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import java.util.Random;
 
+import Controller.HeroMaker;
 import Model.Coordinates;
 import Model.PcCoordinates;
 
@@ -13,6 +14,8 @@ public class Map {
 	public String [][] board;
 	ArrayList<Coordinates> enemyCoordinate;
 	PcCoordinates pc = new PcCoordinates();
+	Messages write = new Messages();
+	private String input= "";
 	
 	//public Map() {}
 	
@@ -68,7 +71,7 @@ public class Map {
 	}
 	
 	public void placeEnemies() {
-		System.out.println("You are here");
+//		System.out.println("You are here");
 		ArrayList<Coordinates> placements = Enemies();
 		
 		for(Coordinates c: placements) {
@@ -102,23 +105,33 @@ public class Map {
 		
 		
 		int x = cox;
-		System.out.println("pc's x is:" + x);
+//		System.out.println("pc's x is:" + x);
 		int y = coy; //should be received from hero class
-		System.out.println("pc's x is:" + y);
+//		System.out.println("pc's x is:" + y);
 		int mapsize = board.length;
-		boolean Win = false;
+		boolean Move = false;
 		
 		
 		if(direction == 1)
 		{//going up changes the y coordinates
 			board[y][x] = " * ";
 			if((y - 1 ) < 0 ){
-				Win = true;
+				Move = false;
 			}
-			//fight((y-1),x);
-			
 			board[y-1][x] = " H ";
 			showBoard();
+			if(y == 1)
+				System.out.println("move to nexgt level");
+			else {
+				y = y -1;
+				pc.setY(y);
+				System.out.println("lets fight");
+				Move = true;
+				//fight((y-1),x);
+				
+			}
+			
+			
 			
 			
 			
@@ -131,7 +144,7 @@ public class Map {
 			
 			if((y + 1 ) == mapsize ) {
 				
-				Win = true;
+				Move = true;
 			
 			}
 			//fight((y+1),x);
@@ -143,7 +156,7 @@ public class Map {
 		{
 			board[y][x] = " * ";
 			if((x-1) < 0) {
-				Win = true;
+				Move = true;
 			}
 			//fight((y),(x-1));
 			board[y][x-1] = " H ";
@@ -154,7 +167,7 @@ public class Map {
 		{
 			board[y][x] = " * ";
 			if((x + 1) == mapsize) {
-				Win = true;
+				Move = true;
 			}
 			//fight((y),(x+1));
 			board[y][x+1] = " H ";
@@ -165,25 +178,54 @@ public class Map {
 			System.out.println("incorrect value entered");
 		}
 		
-		if(Win = true) {
-			System.out.println("You have won!!!");
-			System.exit(0);
+		if(Move = true)
+		{
+			//check if you have not encountered an enemey
+			for(Coordinates c: enemyCoordinate) {
+				System.out.println(c.getX());
+				System.out.println(c.getY());
+				System.out.println(x);
+				System.out.println(y);
+				if (c.getX() == x || c.getY() == y) {
+					//fight algorithm
+					input = write.encounter();
+					if(input.equals("f"))
+					{
+						System.out.println(HeroMaker.getHero().getHeroAttack());
+						if(HeroMaker.getHero().getHeroAttack() < 100) {
+							System.out.println("My power is unsuparsed......You loose");
+							System.exit(1);
+							
+						}
+						else {
+							System.out.println("You have won this fight.....i will return with might!!!!");
+							//should gain artefact or experience after winning 
+							//then move to next level
+							
+						}
+						}
+					}
+					
+				}
+			
+//			System.out.println("You have won!!!");
+//			System.exit(0);
 		}
 	}
 
-	public void fight(int y, int x) {
-		
-		for(Coordinates c: enemyCoordinate) {
-			if (c.getX() == x || c.getY() == y) {
-				//fight algorithm
-				System.out.println("You looose!!");
-				System.exit(0);
-				
-			}
-				
-		}
-		
-	}
+//	public void fight(int y, int x) {
+//		
+//		for(Coordinates c: enemyCoordinate) {
+//			if (c.getX() == x || c.getY() == y) {
+//				//fight algorithm
+//				System.out.println("You looose!!");
+//				System.exit(0);
+//				
+//			}
+//				
+//		}
+//		
+//	}
 	
 	
 }
