@@ -97,17 +97,9 @@ public class Map {
 	
 	//movement
 	public void move(int direction,int cox, int coy) {
-		// prompt comes before here
-		//1 North
-		//2 South
-		//3 East
-		//4 West
-		
 		
 		int x = cox;
-//		System.out.println("pc's x is:" + x);
-		int y = coy; //should be received from hero class
-//		System.out.println("pc's x is:" + y);
+		int y = coy; 
 		int mapsize = board.length;
 		boolean Move = false;
 		
@@ -119,9 +111,10 @@ public class Map {
 				Move = false;
 			}
 			board[y-1][x] = " H ";
+			System.out.println("print board inside move method after moving");
 			showBoard();
 			if(y == 1)
-				System.out.println("move to nexgt level");
+				System.out.println("move to next level");
 			else {
 				y = y -1;
 				pc.setY(y);
@@ -178,7 +171,7 @@ public class Map {
 			System.out.println("incorrect value entered");
 		}
 		
-		if(Move = true)
+		if(Move == true)
 		{
 			//check if you have not encountered an enemey
 			for(Coordinates c: enemyCoordinate) {
@@ -186,12 +179,12 @@ public class Map {
 				System.out.println(c.getY());
 				System.out.println(x);
 				System.out.println(y);
-				if (c.getX() == x || c.getY() == y) {
+				if (c.getX() == x && c.getY() == y) {
 					//fight algorithm
 					input = write.encounter();
 					if(input.equals("f"))
 					{
-						System.out.println(HeroMaker.getHero().getHeroAttack());
+						//System.out.println(HeroMaker.getHero().getHeroAttack());
 						if(HeroMaker.getHero().getHeroAttack() < 100) {
 							System.out.println("My power is unsuparsed......You loose");
 							System.exit(1);
@@ -199,6 +192,7 @@ public class Map {
 						}
 						else {
 							System.out.println("You have won this fight.....i will return with might!!!!");
+							System.exit(1);
 							//should gain artefact or experience after winning 
 							//then move to next level
 							

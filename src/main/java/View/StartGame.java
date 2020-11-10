@@ -47,7 +47,7 @@ public class StartGame {
 			map.showBoard();
 			int option =  input.movePlayer();
 			map.move(option,cox,coy);
-			
+			System.out.println("printing board after in start game");
 			map.showBoard();
 		
 			System.exit(1);
