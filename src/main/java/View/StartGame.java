@@ -33,7 +33,7 @@ public class StartGame {
 		cox = pc.getX();
 		coy = pc.getY();
 		
-		map.board[cox][coy] = " H ";
+		
 		
 		
 		System.out.println("Mapsize is:"+this.mapSize);
@@ -42,10 +42,8 @@ public class StartGame {
 		
 		while(true) {
 			
-			map.showBoard();
-			//place enemies
-			map.placeEnemies();
 			map.board[cox][coy] = " H ";
+			map.placeEnemies();
 			map.showBoard();
 			int option =  input.movePlayer();
 			map.move(option,cox,coy);

@@ -119,7 +119,7 @@ public class Map {
 			
 			board[y-1][x] = " E ";
 			
-			//showBoard();
+			
 			
 			
 		}
