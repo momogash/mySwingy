@@ -101,20 +101,23 @@ public class Map {
 		int x = cox;
 		int y = coy; 
 		int mapsize = board.length;
-		boolean Move = false;
+		boolean Move = true;
 		
 		
 		if(direction == 1)
 		{//going up changes the y coordinates
 			board[y][x] = " * ";
 			if((y - 1 ) < 0 ){
-				Move = false;
+				Move = true;
 			}
 			board[y-1][x] = " H ";
 			System.out.println("print board inside move method after moving");
 			showBoard();
-			if(y == 1)
+			if(y == 1) {
 				System.out.println("move to next level");
+				System.exit(1);
+			}
+			
 			else {
 				y = y -1;
 				pc.setY(y);
@@ -179,7 +182,7 @@ public class Map {
 				System.out.println(c.getY());
 				System.out.println(x);
 				System.out.println(y);
-				if (c.getX() == x && c.getY() == y) {
+				if (c.getX() == x || c.getY() == y) {
 					//fight algorithm
 					input = write.encounter();
 					if(input.equals("f"))
@@ -198,28 +201,40 @@ public class Map {
 							
 						}
 						}
+					else if(input.equals("r")) {
+						if(HeroMaker.getHero().getHeroAttack() < 100) {
+							System.out.println("No room to run......You loose");
+							System.exit(1);
+							
+						}
+						else {
+							System.out.println("Dont come backkkkkkkkk!!!!!!!!!!");
+							System.exit(1);
+							//should gain artefact or experience after winning 
+							//then move to next level
+							
+						}
+						
 					}
+					}
+				else {
+					write.movePlayer();
+					showBoard();
+					move(direction, x, y);
+					System.out.println("x is:" + x);
+					System.out.println("y is "+ y);
+					System.out.println("direction is:" + direction);
+				}
 					
 				}
 			
 //			System.out.println("You have won!!!");
 //			System.exit(0);
 		}
+		else {
+			System.out.println("You have won, move to the next level");
+		}
 	}
-
-//	public void fight(int y, int x) {
-//		
-//		for(Coordinates c: enemyCoordinate) {
-//			if (c.getX() == x || c.getY() == y) {
-//				//fight algorithm
-//				System.out.println("You looose!!");
-//				System.exit(0);
-//				
-//			}
-//				
-//		}
-//		
-//	}
 	
 	
 }

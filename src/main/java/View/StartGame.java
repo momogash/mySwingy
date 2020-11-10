@@ -49,6 +49,7 @@ public class StartGame {
 			map.move(option,cox,coy);
 			System.out.println("printing board after in start game");
 			map.showBoard();
+			
 		
 			System.exit(1);
 			
