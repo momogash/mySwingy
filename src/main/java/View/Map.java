@@ -115,9 +115,10 @@ public class Map {
 			if((y - 1 ) < 0 ){
 				Win = true;
 			}
-			fight((y-1),x);
+			//fight((y-1),x);
 			
-			board[y-1][x] = " E ";
+			board[y-1][x] = " H ";
+			showBoard();
 			
 			
 			
@@ -133,8 +134,9 @@ public class Map {
 				Win = true;
 			
 			}
-			fight((y+1),x);
-			board[y+1][x] = " E ";	
+			//fight((y+1),x);
+			board[y+1][x] = " H ";	
+			showBoard();
 		}
 		
 		else if(direction == 3)
@@ -143,8 +145,9 @@ public class Map {
 			if((x-1) < 0) {
 				Win = true;
 			}
-			fight((y),(x-1));
-			board[y][x-1] = " E ";
+			//fight((y),(x-1));
+			board[y][x-1] = " H ";
+			showBoard();
 			
 		}
 		else if(direction == 4)
@@ -153,8 +156,9 @@ public class Map {
 			if((x + 1) == mapsize) {
 				Win = true;
 			}
-			fight((y),(x+1));
-			board[y][x+1] = " E ";
+			//fight((y),(x+1));
+			board[y][x+1] = " H ";
+			showBoard();
 		}
 		else 
 		{

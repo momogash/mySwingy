@@ -23,7 +23,7 @@ public class Messages {
 	}
 	
 	public int movePlayer() {
-		System.out.println("Press 1 to move up | 2 to move down | 3 to move right | 4 to move left");
+		System.out.println("Press 1 to move up | 2 to move down | 3 to move left | 4 to move right");
 		Scanner scan = new Scanner(System.in);
 		int input = Integer.parseInt(scan.next()); 
 		return input;
