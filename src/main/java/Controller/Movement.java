@@ -43,7 +43,7 @@ public class Movement {
 			x++;
 
 		}
-		if((y < 0 |  y >= size) | (x < 0 | x >= size)) {
+		if((y < 0 |  y >= (size)) | (x < 0 | x >= (size))) {
 			System.out.println("Move on to the next level");
 		}
 	}

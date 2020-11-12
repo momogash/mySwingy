@@ -36,6 +36,7 @@ public class StartGame {
 		pc.setY(this.mapSize/2);
 		cox = pc.getX();
 		coy = pc.getY();
+		map.board[cox][coy] = " H ";
 		
 		
 		
@@ -43,16 +44,18 @@ public class StartGame {
 		System.out.println("Mapsize is:"+this.mapSize);
 		System.out.println("Player X coordinate is:"+cox);
 		System.out.println("Player Y coordinate is:"+coy);
-//		map.board[cox][coy] = " H ";
+
 		run = true;
 		map.placeEnemies();
-		map.board[cox][coy] = " H ";
+		
+		
 		while(run) {
 			
 		
 			
 			
 			map.showBoard();
+			map.board[move.y][move.x] = " * ";
 			int option =  input.movePlayer();
 			move.move(option, cox, coy);
 			
@@ -63,8 +66,11 @@ public class StartGame {
 			map.board[move.y][move.x] = " H ";
 			pc.setX(move.x);
 			pc.setY(move.y);
-			this.cox = pc.getX();
-			this.coy = pc.getY();
+			cox = pc.getX();
+			
+			System.out.println(cox);
+			coy = pc.getY();
+			System.out.println(coy);
 			
 			//map.showBoard();
 			System.out.println("printing board after in start game");
