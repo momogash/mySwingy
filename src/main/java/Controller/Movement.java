@@ -28,7 +28,7 @@ public class Movement {
 		
 		if(direction == 1) {
 			y--;
-			Move = true;
+			
 
 		}
 		else if(direction == 2) {
