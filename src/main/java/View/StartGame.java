@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import Controller.HeroMaker;
 import Model.Coordinates;
 import Model.PcCoordinates;
+import Controller.Movement;
 
 
 public class StartGame {
@@ -13,11 +14,14 @@ public class StartGame {
 	PcCoordinates pc = new PcCoordinates();
 	Messages input = new Messages();
 	//Map map = new Map();
+	Movement move = new Movement();
 	
 	private int pcLevel;
-	private int mapSize;
+	public int mapSize;
 	public int cox = 0;
 	public int coy = 0;
+	private int position;
+	boolean run;
 	
 	
 	
@@ -40,16 +44,27 @@ public class StartGame {
 		System.out.println("Player X coordinate is:"+cox);
 		System.out.println("Player Y coordinate is:"+coy);
 		
+		run = true;
+		
 		while(true) {
 			
+		
 			map.board[cox][coy] = " H ";
 			map.placeEnemies();
 			map.showBoard();
 			int option =  input.movePlayer();
-			map.move(option,cox,coy);
-			System.out.println("printing board after in start game");
-			map.showBoard();
+			move.move(option, cox, coy);
 			
+			
+
+			
+			map.board[cox][coy] = " * ";
+			map.board[move.y][move.x] = " H ";
+			
+			map.showBoard();
+			System.out.println("printing board after in start game");
+//			map.showBoard();
+//			
 		
 			System.exit(1);
 			

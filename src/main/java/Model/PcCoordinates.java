@@ -31,17 +31,17 @@ public class PcCoordinates {
 	public int getMapSize() {
 		return this.mapSize;
 	}
-	public void nextLevel() {
-		hero.setHeroLevel(hero.getHeroLevel() + 1);
-		hero.setHeroAttack(hero.getHeroAttack() + 10);
-		hero.setHeroDefense(hero.getHeroDefense() + 10);
-		setXP(hero.getHeroLevel());
-		setMapSize(hero.getHeroLevel());
-		setX(this.mapSize/2);
-		setY(this.mapSize/2);
-		//place enemies from Map
-		System.out.println("place enemies from Map");
-	}
-	
+//	public void nextLevel() {
+//		hero.setHeroLevel(hero.getHeroLevel() + 1);
+//		hero.setHeroAttack(hero.getHeroAttack() + 10);
+//		hero.setHeroDefense(hero.getHeroDefense() + 10);
+//		setXP(hero.getHeroLevel());
+//		setMapSize(hero.getHeroLevel());
+//		setX(this.mapSize/2);
+//		setY(this.mapSize/2);
+//		//place enemies from Map
+//		System.out.println("place enemies from Map");
+//	}
+//	
 
 }

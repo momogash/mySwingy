@@ -15,9 +15,11 @@ public class Map {
 	ArrayList<Coordinates> enemyCoordinate;
 	PcCoordinates pc = new PcCoordinates();
 	Messages write = new Messages();
+	HeroMaker hero = new HeroMaker();
 	private String input= "";
+	private int newMapsize = 0;
 	
-	//public Map() {}
+	public Map() {}
 	
 	public Map(int level) {
 		this.board = createBoard(mapSize(level));
@@ -34,7 +36,7 @@ public class Map {
 		String[][] board = new String[mapsize][mapsize];
 		for(int y = 0; y < mapsize; y++) {
 			for(int x = 0; x < mapsize; x++) {
-				board[y][x] = " * ";
+				board[x][y] = " * ";
 						
 			}
 		}
@@ -115,7 +117,8 @@ public class Map {
 			showBoard();
 			if(y == 1) {
 				System.out.println("move to next level");
-				System.exit(1);
+				nextLevel();
+				//StartGame();
 			}
 			
 			else {
@@ -125,28 +128,34 @@ public class Map {
 				Move = true;
 				//fight((y-1),x);
 				
-			}
-			
-			
-			
-			
-			
-			
+			}	
 		}
 		
 		else if(direction == 2)
 		{
 			board[y][x] = " * ";
 			
-			if((y + 1 ) == mapsize ) {
+			if((y + 1 ) == mapsize ) { //?
 				
 				Move = true;
 			
 			}
-			//fight((y+1),x);
-			board[y+1][x] = " H ";	
 			showBoard();
+			if(y == mapsize) {
+				System.out.println("move to next level");
+				nextLevel();
+				System.exit(1);
+			}
+			else {
+				y = y + 1;
+				pc.setY(y);
+				System.out.println("lets fight");
+				Move = true;
+			}
+			board[y+1][x] = " H ";	// since its 0 -> (mapsize -1) you cant set this if y+1 = mapsize\
+			//ˆmoved this down below the y==mapsize System.exit
 		}
+		
 		
 		else if(direction == 3)
 		{
@@ -182,13 +191,14 @@ public class Map {
 				System.out.println(c.getY());
 				System.out.println(x);
 				System.out.println(y);
-				if (c.getX() == x || c.getY() == y) {
+				if (c.getX() == x && c.getY() == y) {
 					//fight algorithm
 					input = write.encounter();
 					if(input.equals("f"))
 					{
 						//System.out.println(HeroMaker.getHero().getHeroAttack());
-						if(HeroMaker.getHero().getHeroAttack() < 100) {
+	
+						if(hero.getHeroAttack() < 100) {
 							System.out.println("My power is unsuparsed......You loose");
 							System.exit(1);
 							
@@ -200,15 +210,16 @@ public class Map {
 							//then move to next level
 							
 						}
-						}
+					}
 					else if(input.equals("r")) {
-						if(HeroMaker.getHero().getHeroAttack() < 100) {
+						//HeroMaker.getHero().getHeroAttack() < 100) 
+						if(hero.getHeroAttack() < 100){
 							System.out.println("No room to run......You loose");
 							System.exit(1);
 							
 						}
 						else {
-							System.out.println("Dont come backkkkkkkkk!!!!!!!!!!");
+							System.out.println("You may have escaped this time.....Dont come backkkkkkkkk!!!!!!!!!!");
 							System.exit(1);
 							//should gain artefact or experience after winning 
 							//then move to next level
@@ -216,7 +227,7 @@ public class Map {
 						}
 						
 					}
-					}
+				}
 				else {
 					write.movePlayer();
 					showBoard();
@@ -224,16 +235,33 @@ public class Map {
 					System.out.println("x is:" + x);
 					System.out.println("y is "+ y);
 					System.out.println("direction is:" + direction);
-				}
-					
-				}
-			
+				}	
+			}
+			Move = false;
 //			System.out.println("You have won!!!");
 //			System.exit(0);
 		}
 		else {
+			nextLevel();
+			
+			
 			System.out.println("You have won, move to the next level");
 		}
+	}
+	
+	public void nextLevel() {
+		System.out.println("now at next level");
+		hero.setHeroLevel(hero.getHeroLevel() + 1);
+		hero.setHeroAttack(hero.getHeroAttack()+ 10);
+		hero.setHeroDefense(hero.getHeroDefense() + 10);
+		hero.setHeroXp(hero.getHeroLevel());
+		pc.setMapSize(hero.getHeroLevel());
+		newMapsize = mapSize(hero.getHeroLevel());
+		pc.setX(newMapsize/2);
+		pc.setY(newMapsize/2);
+		
+
+		//also generate enemies
 	}
 	
 	
